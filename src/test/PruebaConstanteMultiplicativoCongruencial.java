@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 package test;
-
-import model.ProductosMediosNC;
+import model.ConstanteMultiplicativoSC;
 
 /**
  *
  * @author rodo
  */
-public class PruebaProductosMediosNC {
-     public static void main(String[] args) {
-        new ProductosMediosNC().Calcular(3,  415, 390, 10);
+public class PruebaConstanteMultiplicativoCongruencial {
+    public static void main(String[] args) {
+            new ConstanteMultiplicativoSC().Calcular(6, 12, 7, 8, 10);
+
     }
     
 }

@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class ProductosMediosNC {
 
-    int D, x1, x0, iter, tam2, tam1, primerc, numero1;
+    int D, x1, x0, iter, tam2, tam1, primerc, numero1, referencia;
     long producto;
 
     public ProductosMediosNC() {
@@ -25,6 +25,7 @@ public class ProductosMediosNC {
 
         if (D == Integer.toString(x0).length() && D >= 3) {
             for (int i = 0; i < iter; i++) {
+
                 producto = x0 * x1;
                 x0 = x1;
                 String snumero2 = Long.toString(producto);
