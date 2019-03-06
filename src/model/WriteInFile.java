@@ -7,13 +7,14 @@ package model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class WriteInFile {
     File f;
     FileWriter writer;
     
-    public WriteInFile(String [] numbers, String name){
+    public WriteInFile(ArrayList<String>  numbers, String name){
         try {
             f = new File("src/outputs/" + name + ".txt");
             

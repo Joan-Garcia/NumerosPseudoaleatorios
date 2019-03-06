@@ -3,12 +3,13 @@ Clase de prueba de escritura en el archivo.
 */
 package test;
 
+import java.util.ArrayList;
 import model.WriteInFile;
 
 
 public class PruebaWriter {
     public static void main(String[] args){
-        String [] n = {"0.2324", "0.4634"};
+        ArrayList<String> n = new ArrayList();
         WriteInFile w = new WriteInFile(n, "prueba1");
     }
 }
