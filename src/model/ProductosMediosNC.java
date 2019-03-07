@@ -1,6 +1,6 @@
 /*
  Clase Algoritmo no congruencial productos medios
-Elaborado por: Carlos Fabricio Alfaro Alonso
+ Elaborado por: Carlos Fabricio Alfaro Alonso
  */
 package model;
 
@@ -9,28 +9,24 @@ import javax.swing.JOptionPane;
 
 public class ProductosMediosNC {
 
-    int D, x1, x0, iter, tam2, tam1, primerc, numero1, referencia;
+    int tam2, tam1, primerc, numero1, referencia;
     long producto;
 
     public ProductosMediosNC() {
     }
 
-    public void Calcular(int d, int xsegunda, int xinicial, int iteraciones) {
-        x0 = xinicial;
-        x1 = xsegunda;
-        D = d;
-        iter = iteraciones;
+    public void calcular(int d, int x1, int x0, int iter, String nombre) {
 
         ArrayList<String> equis = new ArrayList();
 
-        if (D == Integer.toString(x0).length() && D >= 3) {
+        if (d == Integer.toString(x0).length() && d >= 3) {
             for (int i = 0; i < iter; i++) {
 
                 producto = x0 * x1;
                 x0 = x1;
                 String snumero2 = Long.toString(producto);
                 tam2 = snumero2.length();
-                tam1 = D;
+                tam1 = d;
                 primerc = (tam2 - tam1) / 2;
                 String snumero3 = snumero2.substring(primerc, primerc + tam1);
                 numero1 = Integer.parseInt(snumero3);
@@ -39,7 +35,7 @@ public class ProductosMediosNC {
                 equis.add(snumero3);
 
             }
-            new WriteInFile(listaNumeros(equis), "Productos Medios No Congruencial");
+            new WriteInFile(listaNumeros(equis), nombre);
         } else {
             JOptionPane.showMessageDialog(null,
                     "El valor de la semilla debe ser igual al de D");

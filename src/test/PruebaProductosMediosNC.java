@@ -13,7 +13,7 @@ import model.ProductosMediosNC;
  */
 public class PruebaProductosMediosNC {
      public static void main(String[] args) {
-        new ProductosMediosNC().Calcular(3,  415, 390, 10);
+        new ProductosMediosNC().calcular(3,  415, 390, 10, "Prueba");
     }
     
 }
