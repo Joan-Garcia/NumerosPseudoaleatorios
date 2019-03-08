@@ -5,9 +5,13 @@
  */
 package view;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import model.AlgoritmoCuadratico;
+import model.ConstanteMultiplicativoSC;
 import model.ProductosMediosNC;
 
 /**
@@ -15,14 +19,25 @@ import model.ProductosMediosNC;
  * @author joang
  */
 public class UInterface extends javax.swing.JFrame {
-    ProductosMediosNC pmedios = new ProductosMediosNC();
-    AlgoritmoCuadratico cuadratico = new AlgoritmoCuadratico();
+    ProductosMediosNC pmedios;
+    AlgoritmoCuadratico cuadratico;
+    ConstanteMultiplicativoSC cmult;
 
     /**
      * Creates new form UInterface
      */
     public UInterface() {
         initComponents();
+        clabel.setVisible(false);
+        glabel.setVisible(false);
+        ctext.setVisible(false);
+        gtext.setVisible(false);
+        
+        rpm.setSelected(true);
+        
+        pmedios = new ProductosMediosNC();
+        cuadratico = new AlgoritmoCuadratico();
+        cmult = new ConstanteMultiplicativoSC();
     }
 
     /**
@@ -57,7 +72,7 @@ public class UInterface extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         calcular = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Números PseudoAleatorios");
@@ -217,10 +232,10 @@ public class UInterface extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textArea.setEditable(false);
+        textArea.setColumns(20);
+        textArea.setRows(5);
+        jScrollPane1.setViewportView(textArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,6 +281,21 @@ public class UInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    public String readFile(String arch){
+        String text = "";
+        
+        try{
+            Scanner lector = new Scanner(new FileInputStream("src/outputs/" + arch + ".txt"));
+            while(lector.hasNext())
+                text += lector.nextLine() + "\n";
+            
+        }catch(IOException e){
+            text = "Can't Open File";
+            JOptionPane.showMessageDialog(this, "Error al abrir el archivo", "Error", 0);
+        }
+        return text;
+    }
+    
     private boolean PMIsEmpty(){
         return x0text.getText().isEmpty() || x1text.getText().isEmpty() || 
                digitostext.getText().isEmpty() || itmaxtext.getText().isEmpty()|| 
@@ -279,6 +309,12 @@ public class UInterface extends javax.swing.JFrame {
                gtext.getText().isEmpty();
     }
     
+    private boolean RCMIsEmpty(){
+        return x0text.getText().isEmpty() || x1text.getText().isEmpty() || 
+               digitostext.getText().isEmpty() || itmaxtext.getText().isEmpty()|| 
+               filename.getText().isEmpty() || ctext.getText().isEmpty();
+    }
+    
     private void rpmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rpmActionPerformed
         x0label.setText("X0:");
         x1label.setText("X1:");
@@ -287,26 +323,46 @@ public class UInterface extends javax.swing.JFrame {
         glabel.setVisible(false);
         ctext.setVisible(false);
         gtext.setVisible(false);
+        clean();
     }//GEN-LAST:event_rpmActionPerformed
 
     private void x1textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_x1textActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_x1textActionPerformed
-
+    
+    private void clean(){
+        x0text.setText("");
+        x1text.setText("");
+        digitostext.setText("");
+        ctext.setText("");
+        gtext.setText("");
+        filename.setText("");
+        itmaxtext.setText("");
+    }
+    
     private void calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularActionPerformed
         if (!rpm.isSelected() && !rc.isSelected() && !rcm.isSelected()) {
             JOptionPane.showMessageDialog(this, "Seleccione un Algoritmo.", "Error", 0);
         }else if (rpm.isSelected()) {
             if (PMIsEmpty())
-                JOptionPane.showMessageDialog(this, "Rellene los datos correctamente.");
+                JOptionPane.showMessageDialog(this, "Rellene todos los campos.");
             else{
 //                pmedios.calcular(digitostext.getText(), x1text.getText(), x0text.getText(), itmaxtext.getText(), filename.getText());
+                textArea.setText(readFile(filename.getText()));
             }
         }else if (rc.isSelected()){
             if (RCIsEmpty())
-                JOptionPane.showMessageDialog(this, "Rellene los datos correctamente.");
+                JOptionPane.showMessageDialog(this, "Rellene todos los campos.");
             else{
 //                cuadratico.calcular(x1text.getText(), digitostext.getText(), ctext.getText(), gtext.getText(), x0text.getText(), itmaxtext.getText(), filename.getText());
+                textArea.setText(readFile(filename.getText()));
+            }
+        }else if (rcm.isSelected()){
+            if (RCMIsEmpty())
+                JOptionPane.showMessageDialog(this, "Rellene todos los campos.");
+            else{
+//                cmult.Calcular(x0text.getText(), x1text.getText(), digitostext.getText(), ctext.getText(), itmaxtext.getText(), filename.getText());
+                textArea.setText(readFile(filename.getText()));
             }
         }
         
@@ -321,10 +377,19 @@ public class UInterface extends javax.swing.JFrame {
         glabel.setVisible(true);
         ctext.setVisible(true);
         gtext.setVisible(true);
+        clean();
     }//GEN-LAST:event_rcActionPerformed
 
     private void rcmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rcmActionPerformed
-        
+        x0label.setText("X0:");
+        x1label.setText("a:");
+        digitoslabel.setText("c:");
+        clabel.setText("m:");
+        clabel.setVisible(true);
+        glabel.setVisible(false);
+        ctext.setVisible(true);
+        gtext.setVisible(false);
+        clean();
     }//GEN-LAST:event_rcmActionPerformed
 
     /**
@@ -379,10 +444,10 @@ public class UInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JRadioButton rc;
     private javax.swing.JRadioButton rcm;
     private javax.swing.JRadioButton rpm;
+    private javax.swing.JTextArea textArea;
     private javax.swing.JLabel x0label;
     private javax.swing.JTextField x0text;
     private javax.swing.JLabel x1label;
