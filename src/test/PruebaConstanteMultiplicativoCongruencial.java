@@ -12,7 +12,7 @@ import model.ConstanteMultiplicativoSC;
  */
 public class PruebaConstanteMultiplicativoCongruencial {
     public static void main(String[] args) {
-            new ConstanteMultiplicativoSC().Calcular(6, 13, 7, 8, 15,"prueba6" );
+            new ConstanteMultiplicativoSC().Calcular(12, 17, 11, 16, 100 ,"Hola");
 
     }
     

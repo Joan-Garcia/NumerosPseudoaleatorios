@@ -16,7 +16,6 @@ public class ProductosMediosNC {
     }
 
     public void calcular(int d, int x1, int x0, int iter, String nombre) {
-
         ArrayList<String> equis = new ArrayList();
 
         if (d == Integer.toString(x0).length() && d >= 3) {
@@ -30,12 +29,15 @@ public class ProductosMediosNC {
                 primerc = (tam2 - tam1) / 2;
                 String snumero3 = snumero2.substring(primerc, primerc + tam1);
                 numero1 = Integer.parseInt(snumero3);
+                equis.add(snumero3);
+                System.out.println(numero1);
+                busqueda(numero1, equis, nombre);
 
                 x1 = numero1;
-                equis.add(snumero3);
 
             }
             new WriteInFile(listaNumeros(equis), nombre);
+
         } else {
             JOptionPane.showMessageDialog(null,
                     "El valor de la semilla debe ser igual al de D");
@@ -53,6 +55,26 @@ public class ProductosMediosNC {
 
         }
         return r;
+
+    }
+
+    private int busqueda(int producto, ArrayList<String> equis, String nombre) {
+        if (equis.size() > 1) {
+
+            for (int j = equis.size() - 1, i = 0; i < equis.size() - 1; i++) {
+                if (equis.get(i).equals(equis.get(j))) {
+                    JOptionPane.showMessageDialog(null, "SE REPITE LA SEMILLA");
+                    JOptionPane.showMessageDialog(null, "x" + (i + 1) + ": "
+                            + equis.get(i) + " y la semilla x" + (j + 2) + ": " + equis.get(j));
+                    new WriteInFile(listaNumeros(equis), nombre);
+                    System.exit(0);
+
+                }
+            }
+        } else {
+            return producto;
+        }
+        return producto;
 
     }
 }

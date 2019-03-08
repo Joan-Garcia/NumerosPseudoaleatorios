@@ -9,7 +9,7 @@ import model.AlgoritmoCuadratico;
  */
 public class PruebaAlgoritmoConCuadra {
     public static void main(String[] args) {
-            new AlgoritmoCuadratico().calcular(26, 27, 27, 3, 13, 14, "Prueba1");
+            new AlgoritmoCuadratico().calcular(26, 27, 27, 3, 13, 15, "Prueba1");
 
     }
 
