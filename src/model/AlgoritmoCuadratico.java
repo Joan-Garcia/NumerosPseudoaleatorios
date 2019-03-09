@@ -16,30 +16,40 @@ public class AlgoritmoCuadratico {
 
     ArrayList<String> p = new ArrayList();
 
-    public void calcular(int a, int b, int c, int g, int xi, int n, String nombre) {
+    public void calcular(String a1, String b1, String c1, String g1, String xi1, String n1, String nombre) {
 
-        int m = (int) Math.pow(2, g);
-        int[] xo12 = new int[m + 2];
-        xo12[0] = -1;
-
-        for (int i = 1; i < n+1; i++) {
-            xi = ((a * (int) Math.pow(xi, 2)) + (b * xi) + c) % m;
-            xo12[i] = xi;
-            float r = ((float) xi) / ((float) (m - 1));
-            p.add("r" + i + ": " + String.valueOf(r));
-            for (int j = 1; i - j > 0; j++) {
-                if (xo12[i] == xo12[i - j]) {
+         try {
+            int a =Integer.parseInt(a1);
+            int b =Integer.parseInt(b1);
+            int c =Integer.parseInt(c1);
+            int g =Integer.parseInt(g1);
+            int xi =Integer.parseInt(xi1);
+            int n =Integer.parseInt(n1);
+            
+            int m = (int) Math.pow(2, g);
+            int[] xo12 = new int[m + 2];
+            xo12[0] = -1;
+            for (int i = 1; i < n + 1; i++) {
+                xi = ((a * (int) Math.pow(xi, 2)) + (b * xi) + c) % m;
+                xo12[i] = xi;
+                float r = ((float) xi) / ((float) (m - 1));
+                p.add("r" + i + ": " + String.valueOf(r));
+                for (int j = 1; i - j > 0; j++) {
+                    if (xo12[i] == xo12[i - j]) {
 //                    System.out.println("x" + j + "=" + xi);
-                    JOptionPane.showMessageDialog(null, "SE REPITE LA SEMILLA");
-                    JOptionPane.showMessageDialog(null, "x" + (i - j) + ":"
-                            + xo12[i] + " y la semilla x" + i + ":" + xo12[i - j]);
-                    new WriteInFile(p, nombre);
-                    System.exit(0);
+                        JOptionPane.showMessageDialog(null, "SE REPITE LA SEMILLA");
+                        JOptionPane.showMessageDialog(null, "x" + (i - j) + ":"
+                                + xo12[i] + " y la semilla x" + i + ":" + xo12[i - j]);
+                        new WriteInFile(p, nombre);
+                        System.exit(0);
+                    }
                 }
+                new WriteInFile(p, nombre);
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Solo valores enteros");
         }
-        new WriteInFile(p, nombre);
-
     }
 
 }
