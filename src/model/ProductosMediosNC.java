@@ -15,35 +15,45 @@ public class ProductosMediosNC {
     public ProductosMediosNC() {
     }
 
-    public void calcular(int d, int x1, int x0, int iter, String nombre) {
-        ArrayList<String> equis = new ArrayList();
+    public void calcular(String d1, String x11, String x01, String iter1, String nombre) {
 
-        if (d == Integer.toString(x0).length() && d >= 3) {
-            for (int i = 0; i < iter; i++) {
+        try {
+            int d = Integer.parseInt(d1);
+            int x1 = Integer.parseInt(x11);
+            int x0 = Integer.parseInt(x01);
+            int iter = Integer.parseInt(iter1);
+            
+            ArrayList<String> equis = new ArrayList();
 
-                producto = x0 * x1;
-                x0 = x1;
-                String snumero2 = Long.toString(producto);
-                tam2 = snumero2.length();
-                tam1 = d;
-                primerc = (tam2 - tam1) / 2;
-                String snumero3 = snumero2.substring(primerc, primerc + tam1);
-                numero1 = Integer.parseInt(snumero3);
-                equis.add(snumero3);
-                System.out.println(numero1);
-                busqueda(numero1, equis, nombre);
+            if (d == Integer.toString(x0).length() && d >= 3) {
+                for (int i = 0; i < iter; i++) {
 
-                x1 = numero1;
+                    producto = x0 * x1;
+                    x0 = x1;
+                    String snumero2 = Long.toString(producto);
+                    tam2 = snumero2.length();
+                    tam1 = d;
+                    primerc = (tam2 - tam1) / 2;
+                    String snumero3 = snumero2.substring(primerc, primerc + tam1);
+                    numero1 = Integer.parseInt(snumero3);
+                    equis.add(snumero3);
+                    System.out.println(numero1);
+                    busqueda(numero1, equis, nombre);
 
+                    x1 = numero1;
+
+                }
+                new WriteInFile(listaNumeros(equis), nombre);
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "El valor de la semilla debe ser igual al de D");
+                System.exit(0);
             }
-            new WriteInFile(listaNumeros(equis), nombre);
-
-        } else {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
-                    "El valor de la semilla debe ser igual al de D");
-            System.exit(0);
+                    "Solo valores enteros");
         }
-
     }
 
     private ArrayList<String> listaNumeros(ArrayList<String> equis) {

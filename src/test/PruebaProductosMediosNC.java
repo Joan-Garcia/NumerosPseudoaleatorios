@@ -13,7 +13,7 @@ import model.ProductosMediosNC;
  */
 public class PruebaProductosMediosNC {
      public static void main(String[] args) {
-        new ProductosMediosNC().calcular(4, 5015, 5734, 50, "Prueba7");
+        new ProductosMediosNC().calcular("4", "5015", "5734", "50", "Prueba7");
     }
     
 }

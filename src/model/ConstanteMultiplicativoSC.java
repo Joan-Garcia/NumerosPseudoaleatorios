@@ -20,25 +20,35 @@ public class ConstanteMultiplicativoSC {
     public ConstanteMultiplicativoSC() {
     }
 
-    public void Calcular(int x0, int a, int c, int m, int iter, String nombre) {
-        if ((a + c + m + x0) % 1 == 0) {
-            ArrayList<String> equis = new ArrayList();
+    public void Calcular(String x01, String a1, String c1, String m1, String iter1, String nombre) {
+        try {
+            int x0 = Integer.parseInt(x01);
+            int a = Integer.parseInt(a1);
+            int c = Integer.parseInt(c1);
+            int m = Integer.parseInt(m1);
+            int iter = Integer.parseInt(iter1);
 
-            for (int i = 0; i < iter; i++) {
-                producto = ((a * x0) + c) % m;
-                r = (float) producto / (m - 1);
-                equis.add(Float.toString(r));
-                x0 = busqueda(producto, equis, nombre);
+            if ((a + c + m + x0) % 1 == 0) {
+                ArrayList<String> equis = new ArrayList();
 
+                for (int i = 0; i < iter; i++) {
+                    producto = ((a * x0) + c) % m;
+                    r = (float) producto / (m - 1);
+                    equis.add(Float.toString(r));
+                    x0 = busqueda(producto, equis, nombre);
+
+                }
+                new WriteInFile(listaNumeros(equis), nombre);
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Solo valores enteros");
+                System.exit(0);
             }
-            new WriteInFile(listaNumeros(equis), nombre);
-
-        } else {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Solo valores enteros");
-            System.exit(0);
         }
-
     }
 
     private ArrayList<String> listaNumeros(ArrayList<String> equis) {
