@@ -148,6 +148,12 @@ public class UInterface extends javax.swing.JFrame {
         clabel.setText("c:");
         clabel.setToolTipText("");
 
+        ctext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctextActionPerformed(evt);
+            }
+        });
+
         glabel.setText("g:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -347,21 +353,21 @@ public class UInterface extends javax.swing.JFrame {
             if (PMIsEmpty())
                 JOptionPane.showMessageDialog(this, "Rellene todos los campos.");
             else{
-//                pmedios.calcular(digitostext.getText(), x1text.getText(), x0text.getText(), itmaxtext.getText(), filename.getText());
+                pmedios.calcular(digitostext.getText(), x1text.getText(), x0text.getText(), itmaxtext.getText(), filename.getText());
                 textArea.setText(readFile(filename.getText()));
             }
         }else if (rc.isSelected()){
             if (RCIsEmpty())
                 JOptionPane.showMessageDialog(this, "Rellene todos los campos.");
             else{
-//                cuadratico.calcular(x1text.getText(), digitostext.getText(), ctext.getText(), gtext.getText(), x0text.getText(), itmaxtext.getText(), filename.getText());
+                cuadratico.calcular(x1text.getText(), digitostext.getText(), ctext.getText(), gtext.getText(), x0text.getText(), itmaxtext.getText(), filename.getText());
                 textArea.setText(readFile(filename.getText()));
             }
         }else if (rcm.isSelected()){
             if (RCMIsEmpty())
                 JOptionPane.showMessageDialog(this, "Rellene todos los campos.");
             else{
-//                cmult.Calcular(x0text.getText(), x1text.getText(), digitostext.getText(), ctext.getText(), itmaxtext.getText(), filename.getText());
+               cmult.Calcular(x0text.getText(), x1text.getText(), digitostext.getText(), ctext.getText(), itmaxtext.getText(), filename.getText());
                 textArea.setText(readFile(filename.getText()));
             }
         }
@@ -373,6 +379,7 @@ public class UInterface extends javax.swing.JFrame {
         x0label.setText("X0:");
         x1label.setText("a:");
         digitoslabel.setText("b:");
+        clabel.setText("c");
         clabel.setVisible(true);
         glabel.setVisible(true);
         ctext.setVisible(true);
@@ -391,6 +398,10 @@ public class UInterface extends javax.swing.JFrame {
         gtext.setVisible(false);
         clean();
     }//GEN-LAST:event_rcmActionPerformed
+
+    private void ctextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctextActionPerformed
 
     /**
      * @param args the command line arguments
