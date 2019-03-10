@@ -14,9 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class ConstanteMultiplicativoSC {
 
-    int producto, v;
+    int producto;
     float r;
-    
 
     public ConstanteMultiplicativoSC() {
     }
@@ -32,7 +31,7 @@ public class ConstanteMultiplicativoSC {
             if ((a + c + m + x0) % 1 == 0) {
                 ArrayList<String> equis = new ArrayList();
 
-                for (int i = 0; i < iter || v ==1; i++) {
+                for (int i = 0; i < iter; i++) {
                     producto = ((a * x0) + c) % m;
                     r = (float) producto / (m - 1);
                     equis.add(Float.toString(r));
@@ -43,11 +42,9 @@ public class ConstanteMultiplicativoSC {
 
             } else {JOptionPane.showMessageDialog(null,
                     "Solo valores enteros");
-                    v=1;
                 
             }
         } catch (Exception e) {
-            v =1;
         }
     }
 
@@ -65,13 +62,13 @@ public class ConstanteMultiplicativoSC {
 
     private int busqueda(int producto, ArrayList<String> equis, String nombre) {
         if (equis.size() > 1) {
-            for (int j = equis.size() - 1, i = 0;v ==1 || i < equis.size() - 1; i++) {
+            for (int j = equis.size() - 1, i = 0; i < equis.size() - 1; i++) {
                 if (equis.get(i).equals(equis.get(j))) {
                     JOptionPane.showMessageDialog(null, "SE REPITE LA SEMILLA");
                     JOptionPane.showMessageDialog(null, "x" + (i + 1) + ": "
                             + equis.get(i) + " y la semilla x" + (j + 1) + ": " + equis.get(j));
                     new WriteInFile(listaNumeros(equis), nombre);
-                    v =1;
+                    System.exit(0);
                 }
             }
         }

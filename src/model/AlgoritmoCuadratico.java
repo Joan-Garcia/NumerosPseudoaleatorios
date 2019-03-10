@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
  * @author HunterXB
  */
 public class AlgoritmoCuadratico {
-    int v = 0;
 
     ArrayList<String> p = new ArrayList();
 
@@ -30,7 +29,7 @@ public class AlgoritmoCuadratico {
             int m = (int) Math.pow(2, g);
             int[] xo12 = new int[m + 2];
             xo12[0] = -1;
-            for (int i = 1; i < n + 1 || v ==1; i++) {
+            for (int i = 1; i < n + 1; i++) {
                 xi = ((a * (int) Math.pow(xi, 2)) + (b * xi) + c) % m;
                 xo12[i] = xi;
                 float r = ((float) xi) / ((float) (m - 1));
@@ -42,7 +41,7 @@ public class AlgoritmoCuadratico {
                         JOptionPane.showMessageDialog(null, "x" + (i - j) + ":"
                                 + xo12[i] + " y la semilla x" + i + ":" + xo12[i - j]);
                         new WriteInFile(p, nombre);
-                        v =1;
+                        System.exit(0);
                     }
                 }
                 new WriteInFile(p, nombre);

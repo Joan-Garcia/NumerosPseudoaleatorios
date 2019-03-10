@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class ProductosMediosNC {
 
-    int tam2, tam1, primerc, numero1, referencia, v;
+    int tam2, tam1, primerc, numero1, referencia;
     long producto;
 
     public ProductosMediosNC() {
@@ -26,7 +26,7 @@ public class ProductosMediosNC {
             ArrayList<String> equis = new ArrayList();
 
             if (d == Integer.toString(x0).length() && d >= 3) {
-                for (int i = 0; i < iter||v==1; i++) {
+                for (int i = 0; i < iter; i++) {
 
                     producto = x0 * x1;
                     x0 = x1;
@@ -48,12 +48,10 @@ public class ProductosMediosNC {
             } else {
                 JOptionPane.showMessageDialog(null,
                         "El valor de la semilla debe ser igual al de D");
-                v =1;
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Solo valores enteros");
-            v=1;
         }
     }
 
@@ -72,14 +70,14 @@ public class ProductosMediosNC {
     private int busqueda(int producto, ArrayList<String> equis, String nombre) {
         if (equis.size() > 1) {
 
-            for (int j = equis.size() - 1, i = 0;v ==1|| i < equis.size() - 1; i++) {
+            for (int j = equis.size() - 1, i = 0; i < equis.size() - 1; i++) {
                 if (equis.get(i).equals(equis.get(j))) {
                     JOptionPane.showMessageDialog(null, "SE REPITE LA SEMILLA");
                     JOptionPane.showMessageDialog(null, "x" + (i + 1) + ": "
                             + equis.get(i) + " y la semilla x" + (j + 2) + ": " + equis.get(j));
                     new WriteInFile(listaNumeros(equis), nombre);
 
-                    v =1;
+                    System.exit(-1);
                 }
             }
         } else {
