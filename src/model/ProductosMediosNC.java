@@ -11,6 +11,7 @@ public class ProductosMediosNC {
 
     int tam2, tam1, primerc, numero1, referencia;
     long producto;
+    boolean s;
 
     public ProductosMediosNC() {
     }
@@ -22,27 +23,31 @@ public class ProductosMediosNC {
             int x1 = Integer.parseInt(x11);
             int x0 = Integer.parseInt(x01);
             int iter = Integer.parseInt(iter1);
-            
+
             ArrayList<String> equis = new ArrayList();
 
             if (d == Integer.toString(x0).length() && d >= 3) {
+                s = true;
                 for (int i = 0; i < iter; i++) {
 
-                    producto = x0 * x1;
-                    x0 = x1;
-                    String snumero2 = Long.toString(producto);
-                    tam2 = snumero2.length();
-                    tam1 = d;
-                    primerc = (tam2 - tam1) / 2;
-                    String snumero3 = snumero2.substring(primerc, primerc + tam1);
-                    numero1 = Integer.parseInt(snumero3);
-                    equis.add(snumero3);
-                    System.out.println(numero1);
-                    busqueda(numero1, equis, nombre);
+                    if (s == true) {
+                        producto = x0 * x1;
+                        x0 = x1;
+                        String snumero2 = Long.toString(producto);
+                        tam2 = snumero2.length();
+                        tam1 = d;
+                        primerc = (tam2 - tam1) / 2;
+                        String snumero3 = snumero2.substring(primerc, primerc + tam1);
+                        numero1 = Integer.parseInt(snumero3);
+                        equis.add(snumero3);
+                        busqueda(numero1, equis, nombre);
 
-                    x1 = numero1;
+                        x1 = numero1;
+                    } else {
 
+                    }
                 }
+
                 new WriteInFile(listaNumeros(equis), nombre);
 
             } else {
@@ -75,9 +80,10 @@ public class ProductosMediosNC {
                     JOptionPane.showMessageDialog(null, "SE REPITE LA SEMILLA");
                     JOptionPane.showMessageDialog(null, "x" + (i + 1) + ": "
                             + equis.get(i) + " y la semilla x" + (j + 2) + ": " + equis.get(j));
+                    s = false;
+
                     new WriteInFile(listaNumeros(equis), nombre);
 
-                    System.exit(-1);
                 }
             }
         } else {

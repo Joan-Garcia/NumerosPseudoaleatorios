@@ -16,6 +16,7 @@ public class ConstanteMultiplicativoSC {
 
     int producto;
     float r;
+    boolean s;
 
     public ConstanteMultiplicativoSC() {
     }
@@ -30,19 +31,23 @@ public class ConstanteMultiplicativoSC {
 
             if ((a + c + m + x0) % 1 == 0) {
                 ArrayList<String> equis = new ArrayList();
+                s=true;
 
                 for (int i = 0; i < iter; i++) {
-                    producto = ((a * x0) + c) % m;
-                    r = (float) producto / (m - 1);
-                    equis.add(Float.toString(r));
-                    x0 = busqueda(producto, equis, nombre);
+                    if (s == true) {
+                        producto = ((a * x0) + c) % m;
+                        r = (float) producto / (m - 1);
+                        equis.add(Float.toString(r));
+                        x0 = busqueda(producto, equis, nombre);
+                    }
 
                 }
                 new WriteInFile(listaNumeros(equis), nombre);
 
-            } else {JOptionPane.showMessageDialog(null,
-                    "Solo valores enteros");
-                
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Solo valores enteros");
+
             }
         } catch (Exception e) {
         }
@@ -68,7 +73,7 @@ public class ConstanteMultiplicativoSC {
                     JOptionPane.showMessageDialog(null, "x" + (i + 1) + ": "
                             + equis.get(i) + " y la semilla x" + (j + 1) + ": " + equis.get(j));
                     new WriteInFile(listaNumeros(equis), nombre);
-                    System.exit(0);
+                    s = false;
                 }
             }
         }
